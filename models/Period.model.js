@@ -11,16 +11,7 @@ const periodSchema = new Schema({
         type: String,
         enum: ['Activo', 'Cloncluido']
     },
-    shift:{
-        type: String,
-        enum: ['Matutino', 'Vespertino', 'Nocturno', 'Mixto']
-    },
-    address:{
-        type: Number
-    },
-    subjects: [{ type: Schema.Types.ObjectId, ref: 'Subject' }],
-    users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
-    groups: [{ type: Schema.Types.ObjectId, ref: 'Group'}]
+    schools: [{ type: Schema.Types.ObjectId, ref: 'School' }],
 },
 {
     // this second object adds extra properties: `createdAt` and `updatedAt`    

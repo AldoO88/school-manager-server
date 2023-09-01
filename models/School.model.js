@@ -19,7 +19,9 @@ const schoolSchema = new Schema({
     address:{
         type: Number
     },
-    group: { type: Schema.Types.ObjectId, ref: 'Group' }
+    subjects: [{ type: Schema.Types.ObjectId, ref: 'Subject' }],
+    users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+    groups: [{ type: Schema.Types.ObjectId, ref: 'Group'}],
 },
 {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
