@@ -56,7 +56,6 @@ const deletePeriod = async (req, res, next) => {
             res.status(400).json({ message: 'wrong id'})
             return
         }
-
         const schools = (await Period.findById(idPeriod)).schools
         for (const schoolsId of schools) {
             await School.findByIdAndRemove(schoolsId);

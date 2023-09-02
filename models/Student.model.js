@@ -11,7 +11,7 @@ const studentSchema = new Schema({
         required: [true, "the last name is required."],
         trim: true
       },
-    birthDay:{
+    birthday:{
         type: Date
     },
     curp:{
