@@ -4,9 +4,7 @@ const groupSchema = new Schema({
     name:{
         type: String
     },
-    description:{
-        type: String
-    }
+    period: {type: Schema.Types.ObjectId, ref: 'Period'},
 }, 
 {
     // this second object adds extra properties: `createdAt` and `updatedAt`    
