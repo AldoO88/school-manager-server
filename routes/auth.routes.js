@@ -3,7 +3,7 @@ const {
     signupController,
     loginController,
     verifyController
-} = require('../controllers/auth.controllers')
+} = require('../controllers/auth.controller')
 const { isAuthenticated } = require('../middlewares/jwt.middleware');
 
 

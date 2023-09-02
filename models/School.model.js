@@ -17,7 +17,7 @@ const schoolSchema = new Schema({
         enum: ['Matutino', 'Vespertino', 'Nocturno', 'Mixto']
     },
     address:{
-        type: Number
+        type: String
     },
     subjects: [{ type: Schema.Types.ObjectId, ref: 'Subject' }],
     users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
