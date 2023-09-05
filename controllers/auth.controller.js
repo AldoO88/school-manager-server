@@ -5,20 +5,20 @@ const School = require('../models/School.model')
 
 const signupController = async (req, res, next) => {
     try {
-        const { name, lastName, profile, email, password, cct } = req.body;
+        const { name, lastName, profile, email, password, school } = req.body;
 
 
-        if(name === '' || lastName === '' || profile === '' || email === '' || password === '' || cct === ''){
+        if(name === '' || lastName === '' || profile === '' || email === '' || password === '' || school === ''){
             res.status(400).json({ message: "The fields name, last name, profile, email, password and cct are required" })
             return
         }
 
-        const findSchool = await School.findOne(cct);
+        //const findSchool = await School.findOne(school);
 
-        if(!findSchool){
-            res.status(400).json({ message: "The school does not exist" })
-            return
-        }
+        //if(!findSchool){
+          //  res.status(400).json({ message: "The school does not exist" })
+        //return
+        //}
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
         if(!emailRegex.test(email)) {
@@ -78,10 +78,6 @@ const loginController = async (req, res, next) =>{
         const isPasswordCorrect = bcrypt.compareSync(password, foundUser.password)
 
         if(isPasswordCorrect) {
-            // Vamos a crear y a firmar un JWT el cual le entregaremos al front
-            // este token va a tener un periodo de vida antes de expirar
-            // y mientras el front nos envie requests que tenagan a este token
-            // para el server el usuario estara autenticado
 
             const authToken = jwt.sign(
                 { _id: foundUser._id, email: foundUser.email, name: foundUser.name, lastName: foundUser.lastName, profile: foundUser.profile }, // payload
@@ -90,7 +86,10 @@ const loginController = async (req, res, next) =>{
             )
 
             res.status(200).json ({ authToken  })
+
         }
+
+        res.status(400).json({message: "Contraseña incorrecta"})
 
 
     } catch (error) {

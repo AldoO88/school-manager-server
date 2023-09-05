@@ -14,3 +14,5 @@ router.post('/', createGroup);
 router.get('/:groupId', getOneGruop);
 router.put('/:groupId', updateGroup);
 router.delete('/:groupId', deleteGroup);
+
+module.exports = router;
