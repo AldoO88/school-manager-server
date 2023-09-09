@@ -4,6 +4,7 @@ const Student = require('../models/Student.model');
 const getAllStudents = async (req, res, next ) => {
     try {
         const students = await Student.find().populate('group');
+        console.log(students)
         res.status(201).json(students)
     } catch (error) {
         res.status(500).json(error)

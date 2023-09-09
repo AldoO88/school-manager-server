@@ -1,3 +1,4 @@
+
 const { Schema, model } = require("mongoose");
 
 const studentSchema = new Schema({
@@ -18,7 +19,7 @@ const studentSchema = new Schema({
         type: String
     },
     address:{
-        type: Number
+        type: String
     },
     email: {
         type: String,
@@ -38,6 +39,6 @@ const studentSchema = new Schema({
 )
 
 
-const Student = model("Student", studentSchema);
+const Student = model('Student', studentSchema);
 
 module.exports = Student;

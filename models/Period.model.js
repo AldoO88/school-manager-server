@@ -23,6 +23,6 @@ const periodSchema = new Schema({
 )
 
 
-const Period = model("Period", periodSchema);
+const Period = model('Period', periodSchema);
 
 module.exports = Period;
