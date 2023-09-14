@@ -3,8 +3,8 @@ const Subject = require('../models/Subject.model');
 
 const getAllSubjects = async (req, res, next ) => {
     try {
-        const students = await Subject.find()
-        res.status(201).json(students)
+        const subjects = await Subject.find()
+        res.status(201).json(subjects)
     } catch (error) {
         res.status(500).json(error)
     }

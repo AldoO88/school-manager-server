@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const Student = require('../models/Student.model');
+const calculatedAge = require('../utils/calculateAge');
+
 
 const getAllStudents = async (req, res, next ) => {
     try {
         const students = await Student.find().populate('group');
-        console.log(students)
         res.status(201).json(students)
     } catch (error) {
         res.status(500).json(error)
@@ -12,9 +13,13 @@ const getAllStudents = async (req, res, next ) => {
 }
 
 const createStudent = async (req, res, next ) => {
-    const { name, lastName, birthday, curp, address, email, phone, groupId } = req.body;
+    const { name, lastName, gender, birthday, curp, address, email, phone, groupId } = req.body;
     try {
-        const newStudent = await Student.create( { name, lastName, birthday, curp, address, email, phone, groupId });
+        if(name === '' || lastName === '' || gender === '' || birthday === '' || curp === '' || address === '' || email === '' || phone === ''){
+            res.status(400).json({ message: "The all fields  are required" })
+            return
+        }
+        const newStudent = await Student.create( { name, lastName, gender, birthday, curp, address, email, phone, groupId });
         res.status(201).json(newStudent)
     } catch (error) {
         res.status(500).json(error)
@@ -38,9 +43,15 @@ const getOneStudent = async (req, res, next ) => {
 
 const updateStudent = async (req, res, next ) => {
     const { studentId } = req.params
+    const { name, lastName, gender, birthday, curp, address, email, phone } = req.body;
     try {
         if(!mongoose.Types.ObjectId.isValid(studentId)) {
             res.status(400).json({ message: 'wrong id'})
+            return
+        }
+
+        if(name === '' || lastName === '' || gender === '' || birthday === '' || curp === '' || address === '' || email === '' || phone === ''){
+            res.status(400).json({ message: "The all fields  are required" })
             return
         }
         const updateStudents = await Student.findByIdAndUpdate( studentId, req.body, { new: true })

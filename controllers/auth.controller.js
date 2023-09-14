@@ -44,7 +44,7 @@ const signupController = async (req, res, next) => {
         const salt = bcrypt.genSaltSync(10);
         const hashedPassword = bcrypt.hashSync(password, salt);
 
-        const createdUser = await User.create({ name, lastName, profile, email, password: hashedPassword })
+        const createdUser = await User.create({ name, lastName, profile, email, password: hashedPassword, status: 'Active' })
         const { email: savedEmail, name: savedName, _id } = createdUser;
 
         res.status(201).json({ user: { email: savedEmail, name: savedName, _id } })

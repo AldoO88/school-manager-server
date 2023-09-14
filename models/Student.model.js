@@ -11,12 +11,20 @@ const studentSchema = new Schema({
         type: String,
         required: [true, "the last name is required."],
         trim: true
-      },
+    },
+    gender:{
+        type: String,
+        required: [true, "the gender is required."],
+        trim: true,
+        enum: ['Female', 'Male']
+    },
     birthday:{
         type: Date
     },
     curp:{
-        type: String
+        type: String,
+        required: [true, "the curp is required."],
+        trim: true
     },
     address:{
         type: String
