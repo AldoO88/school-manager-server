@@ -18,6 +18,16 @@ const userSchema = new Schema(
       require: [true, "the profile is required."],
       enum: ['Director', 'Subditector', 'Docente', 'Coordinador']
     },
+    specialty:{
+      type: String
+    },
+    hours: {
+      type: Number
+    },
+    status: {
+      type: String,
+      enum: ['Active', 'Inactive']
+    },
     email: {
       type: String,
       required: [true, 'Email is required.'],

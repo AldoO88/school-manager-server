@@ -11,9 +11,9 @@ const getAllGroup = async (req, res, next ) => {
 }
 
 const createGroup = async (req, res, next ) => {
-    const { name, periodId } = req.body;
+    const { grade, group, periodId } = req.body;
     try {
-        const newGroup= await Group.create( { name, periodId });
+        const newGroup= await Group.create( { grade, group, periodId });
         res.status(201).json(newGroup)
     } catch (error) {
         res.status(500).json(error)
