@@ -16,7 +16,6 @@ const getAllGroup = async (req, res, next ) => {
         res.status(500).json(error)
     }
 }
-
 const createGroup = async (req, res, next ) => {
     const { grade, group, periodId } = req.body;
     try {
@@ -26,7 +25,6 @@ const createGroup = async (req, res, next ) => {
         res.status(500).json(error)
     }
 }
-
 const getOneGruop = async (req, res, next ) => {
     const { groupId } = req.params
     try {
