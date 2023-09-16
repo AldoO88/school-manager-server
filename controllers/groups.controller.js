@@ -3,7 +3,14 @@ const Group = require('../models/Group.model');
 
 const getAllGroup = async (req, res, next ) => {
     try {
-        const groups = await Group.find().populate('period')
+        const groups = await Group
+        .aggregate([{
+            $project: {
+                grade: 1,
+                group: 1,
+                description: { $concat: ['$grade', ' ', '$group'] },
+              },
+        }])
         res.status(201).json(groups)
     } catch (error) {
         res.status(500).json(error)
@@ -27,7 +34,7 @@ const getOneGruop = async (req, res, next ) => {
             res.status(400).json({ message: 'wrong id'})
             return
         }
-        const group = await Group.findById( studentId )
+        const group = await Group.findById( groupId )
         .populate('period');
         res.status(201).json(group)
     } catch (error) {

@@ -4,6 +4,7 @@ const Subject = require('../models/Subject.model');
 const getAllSubjects = async (req, res, next ) => {
     try {
         const subjects = await Subject.find()
+        console.log(subjects);
         res.status(201).json(subjects)
     } catch (error) {
         res.status(500).json(error)
