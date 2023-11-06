@@ -5,11 +5,11 @@ const Subject = require('../models/Subject.model');
 const getAllTeachers = async (req, res, next ) => {
     try {
         const teachers = await User.find({profile: 'Docente', status: 'Active'})
-        .populate({path: 'subjects'})
-        console.log(teachers);
-        res.status(201).json(teachers)
+        .populate( { path: 'subjects' } )
+        console.log(JSON.parse(teachers));
+        res.status(201).json(JSON.parse(teachers));
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json(error);
     }
 }
 
